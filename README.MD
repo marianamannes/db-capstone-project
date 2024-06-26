@@ -24,8 +24,8 @@ A database management project aimed at setting up and optimizing the database en
 <p align="center">
 <img src="https://i.ibb.co/sgmR8Lw/Little-Lemon-DM.png" width=90% height=90%> 
 
-- [Foward engineering SQL script]()
-- [Mock data insert script]()
+- [Foward engineering SQL script](https://github.com/marianamannes/db-capstone-project/blob/master/foward_engineering/script_FowardEngineering.sql)
+- [Mock data insert script](https://github.com/marianamannes/db-capstone-project/blob/master/insert/insert_MockData.sql)
 
 <h3> 2. Sales Reports and Table Booking System </h3>
 
@@ -277,4 +277,4 @@ A database management project aimed at setting up and optimizing the database en
     <img src="https://i.ibb.co/1Z8K79w/customer-sales.png" width=65% height=65%> 
   </details>
 
-- [Create a database client using Python]().
+- [Create a database client using Python](https://github.com/marianamannes/db-capstone-project/blob/master/db_client/db_client.ipynb).
