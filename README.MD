@@ -28,7 +28,7 @@ Key components and steps involved in this project include:
 - Create queries to sales report and booking system.
 
   <details>
-  <summary> Queries to sales report </summary>
+  <summary><b>Queries to sales report</b></summary>
   
     <details>
     <summary>Create a view with all orders with a quantity greater than 2</summary>
@@ -134,7 +134,7 @@ Key components and steps involved in this project include:
   </details>
 
   <details>
-  <summary> Booking System </summary>
+  <summary><b>Booking System</b></summary>
     <details>
     <summary>Create a stored procedure to check whether a table in the restaurant is already booked</summary>
 
@@ -233,7 +233,7 @@ Key components and steps involved in this project include:
     </details>
 
     <details>
-    <summary>Create a new procedure called UpdateBooking that they can use to update existing bookings in the booking table</summary>
+    <summary><b>Create a new procedure called UpdateBooking that they can use to update existing bookings in the booking table</b></summary>
 
     ```sql
     DELIMITER //
@@ -261,22 +261,22 @@ Key components and steps involved in this project include:
 - Set up a Tableau Workspace and create an interactive dashboard for sales and profit data.
 
   <details>
-    <summary>Cuisine sales and profits</summary>
+    <summary><b>Cuisine sales and profits</b></summary>
     <img src="data_visualization/cuisine-sales-chart.png" width=65% height=65%> 
   </details>
 
   <details>
-    <summary>Sales bubble chart</summary>
+    <summary><b>Sales bubble chart</b></summary>
     <img src="data_visualization/sales-bubble-chart.png" width=65% height=65%> 
   </details>
 
   <details>
-    <summary>Profit chart </summary>
+    <summary><b>Profit chart</b></summary>
     <img src="data_visualization/profit-chart.png" width=65% height=65%> 
   </details>
 
   <details>
-    <summary>Customer sales </summary>
+    <summary><b>Customer sales</b></summary>
     <img src="data_visualization/customer-sales.png" width=65% height=65%> 
   </details>
 
