@@ -13,13 +13,7 @@ A database management project aimed at setting up and optimizing the database en
 <h3> 1. Database Environment Setup </h3>
 
 - Set up a MySQL instance server using MySQL Workbench.
-- Create and implement an ER diagram data model, conforming to the three fundamental forms, including the following tables:
-	- Bookings: To store information about booked tables in the restaurant including booking id, date and table number.
-	- Orders: To store information about each order such as order date, quantity and total cost.
-	- Order delivery status: To store information about the delivery status of each order such as delivery date and status.
-	- Menu: To store information about cuisines, starters, courses, drinks and desserts.
-	- Customer details: To store information about the customer names and contact details.
-	- Staff information: Including role and salary.
+- Create and implement an ER diagram data model, conforming to the three fundamental forms.
 	
 <p align="center">
 <img src="erd/LittleLemonDM.png" width=90% height=90%> 
@@ -259,22 +253,22 @@ A database management project aimed at setting up and optimizing the database en
 
   <details>
     <summary>Cuisine sales and profits</summary>
-    <img src="https://i.ibb.co/cTkJ3sc/cuisine-sales-chart.png" width=65% height=65%> 
+    <img src="data_visualization/cuisine-sales-chart.png" width=65% height=65%> 
   </details>
 
   <details>
     <summary>Sales bubble chart</summary>
-    <img src="https://i.ibb.co/PC4yYYY/sales-bubble-chart.png" width=65% height=65%> 
+    <img src="data_visualization/sales-bubble-chart.png" width=65% height=65%> 
   </details>
 
   <details>
     <summary>Profit chart </summary>
-    <img src="https://i.ibb.co/Xj7nPwn/profit-chart.png" width=65% height=65%> 
+    <img src="data_visualization/profit-chart.png" width=65% height=65%> 
   </details>
 
   <details>
     <summary>Customer sales </summary>
-    <img src="https://i.ibb.co/1Z8K79w/customer-sales.png" width=65% height=65%> 
+    <img src="data_visualization/customer-sales.png" width=65% height=65%> 
   </details>
 
 - [Create a database client using Python](https://github.com/marianamannes/db-capstone-project/blob/master/db_client/db_client.ipynb).
