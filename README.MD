@@ -136,127 +136,127 @@ Key components and steps involved in this project include:
   <details>
   <summary> Booking System </summary>
     <details>
-      <summary>Create a stored procedure to check whether a table in the restaurant is already booked</summary>
+    <summary>Create a stored procedure to check whether a table in the restaurant is already booked</summary>
 
-      ```sql
-      DELIMITER //
-      
-      CREATE PROCEDURE CheckBooking(IN booking_date_check DATE, IN table_number_check INT)
-      BEGIN
+    ```sql
+    DELIMITER //
+    
+    CREATE PROCEDURE CheckBooking(IN booking_date_check DATE, IN table_number_check INT)
+    BEGIN
+      DECLARE table_count INT;
+    
+      SELECT COUNT(*) INTO @table_count
+      FROM bookings
+      WHERE CAST(booking_date AS date) = booking_date_check AND
+            table_number = table_number_check;
+          
+      IF (@table_count > 0)
+        THEN 
+          SELECT CONCAT('Table ', table_number_check, ' is already booked') AS "Booking status";
+      ELSE
+        SELECT CONCAT('Table ', table_number_check, ' is not booked') AS "Booking status";
+      END IF;
+    
+    END // 
+
+    DELIMITER ;
+    ```
+
+    </details>
+
+    <details>
+    <summary>Create a stored procedure with a transaction statement to perform a rollback if a customer reserves a table that’s already booked under another name</summary>
+
+    ```sql
+    DELIMITER // 
+    
+    CREATE PROCEDURE AddValidBooking(IN booking_date_insert TIMESTAMP,
+                                    IN table_number_insert INT,
+                                    IN customer_id_insert INT,
+                                    IN staff_id_insert INT)
+    BEGIN
         DECLARE table_count INT;
-      
+        
         SELECT COUNT(*) INTO @table_count
         FROM bookings
-        WHERE CAST(booking_date AS date) = booking_date_check AND
-              table_number = table_number_check;
-            
+        WHERE CAST(booking_date AS date) = CAST(booking_date_insert AS date) AND
+              table_number = table_number_insert;
+
+        START TRANSACTION;
         IF (@table_count > 0)
-          THEN 
-            SELECT CONCAT('Table ', table_number_check, ' is already booked') AS "Booking status";
+          THEN ROLLBACK;
+          SELECT CONCAT('Table ', table_number_insert, ' is already booked - booking cancelled') AS "Booking status";
         ELSE
-          SELECT CONCAT('Table ', table_number_check, ' is not booked') AS "Booking status";
-        END IF;
-      
-      END // 
-
-      DELIMITER ;
-      ```
-
-    </details>
-
-    <details>
-      <summary>Create a stored procedure with a transaction statement to perform a rollback if a customer reserves a table that’s already booked under another name</summary>
-
-      ```sql
-      DELIMITER // 
-      
-      CREATE PROCEDURE AddValidBooking(IN booking_date_insert TIMESTAMP,
-                                      IN table_number_insert INT,
-                                      IN customer_id_insert INT,
-                                      IN staff_id_insert INT)
-      BEGIN
-          DECLARE table_count INT;
-          
-          SELECT COUNT(*) INTO @table_count
-          FROM bookings
-          WHERE CAST(booking_date AS date) = CAST(booking_date_insert AS date) AND
-                table_number = table_number_insert;
-
-          START TRANSACTION;
-          IF (@table_count > 0)
-            THEN ROLLBACK;
-            SELECT CONCAT('Table ', table_number_insert, ' is already booked - booking cancelled') AS "Booking status";
-          ELSE
-            INSERT INTO bookings(customer_id, staff_id, booking_date, table_number) VALUES
-                        (customer_id_insert, staff_id_insert, booking_date_insert, table_number_insert);
-            COMMIT;
-            SELECT CONCAT('Booking completed successfully - table ', table_number_insert, ' is now booked') AS "Booking status";
-          END IF;
-          
-      END // 
-      
-      DELIMITER ;
-      ```
-
-    </details>
-
-    <details>
-      <summary>Create a procedure to add a new table booking record</summary>
-
-      ```sql
-      DELIMITER //
-      
-      CREATE PROCEDURE AddBooking(IN booking_id_insert INT, 
-                                  IN customer_id_insert INT,  
-                                  IN table_number_insert INT, 
-                                  IN booking_date_insert TIMESTAMP,  
-                                  IN staff_id_insert INT)
-        BEGIN
-                                  
-          INSERT INTO bookings(id, 
-                              customer_id, 
-                              table_number, 
-                              booking_date,  
-                              staff_id) 
-          VALUES (booking_id_insert, 
-                customer_id_insert, 
-                table_number_insert, 
-                booking_date_insert, 
-                staff_id_insert);
-      
+          INSERT INTO bookings(customer_id, staff_id, booking_date, table_number) VALUES
+                      (customer_id_insert, staff_id_insert, booking_date_insert, table_number_insert);
+          COMMIT;
           SELECT CONCAT('Booking completed successfully - table ', table_number_insert, ' is now booked') AS "Booking status";
-      END // 
+        END IF;
+        
+    END // 
     
-      DELIMITER ;
-      ```
+    DELIMITER ;
+    ```
 
     </details>
 
     <details>
-      <summary>Create a new procedure called UpdateBooking that they can use to update existing bookings in the booking table</summary>
+    <summary>Create a procedure to add a new table booking record</summary>
 
-      ```sql
-      DELIMITER //
-      
-        CREATE PROCEDURE UpdateBooking (IN booking_id_update INT, 
-                                        IN booking_date_update TIMESTAMP)
-        BEGIN                           
-      
-        UPDATE bookings
-        SET booking_date = booking_date_update
-        WHERE id = booking_id_update;
-        
-        SELECT CONCAT('Booking ', booking_id_update, ' updated successfully') AS "Confirmation";
-        
-        END // 
-        
-      DELIMITER ;
-      ```
-        
+    ```sql
+    DELIMITER //
+    
+    CREATE PROCEDURE AddBooking(IN booking_id_insert INT, 
+                                IN customer_id_insert INT,  
+                                IN table_number_insert INT, 
+                                IN booking_date_insert TIMESTAMP,  
+                                IN staff_id_insert INT)
+      BEGIN
+                                
+        INSERT INTO bookings(id, 
+                            customer_id, 
+                            table_number, 
+                            booking_date,  
+                            staff_id) 
+        VALUES (booking_id_insert, 
+              customer_id_insert, 
+              table_number_insert, 
+              booking_date_insert, 
+              staff_id_insert);
+    
+        SELECT CONCAT('Booking completed successfully - table ', table_number_insert, ' is now booked') AS "Booking status";
+    END // 
+  
+    DELIMITER ;
+    ```
+
     </details>
+
+    <details>
+    <summary>Create a new procedure called UpdateBooking that they can use to update existing bookings in the booking table</summary>
+
+    ```sql
+    DELIMITER //
+    
+      CREATE PROCEDURE UpdateBooking (IN booking_id_update INT, 
+                                      IN booking_date_update TIMESTAMP)
+      BEGIN                           
+    
+      UPDATE bookings
+      SET booking_date = booking_date_update
+      WHERE id = booking_id_update;
+      
+      SELECT CONCAT('Booking ', booking_id_update, ' updated successfully') AS "Confirmation";
+      
+      END // 
+      
+    DELIMITER ;
+    ```
+      
+  </details>
   </details>
   
-<h3> 3. Data Visualization and Database Client </h3>
+<h3> 3. Data visualization and database client </h3>
 
 - Set up a Tableau Workspace and create an interactive dashboard for sales and profit data.
 
