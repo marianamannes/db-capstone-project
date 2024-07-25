@@ -22,7 +22,7 @@ A database management project aimed at setting up and optimizing the database en
 	- Staff information: Including role and salary.
 	
 <p align="center">
-<img src="https://i.ibb.co/sgmR8Lw/Little-Lemon-DM.png" width=90% height=90%> 
+<img src="erd/LittleLemonDM.png" width=90% height=90%> 
 
 - [Foward engineering SQL script](https://github.com/marianamannes/db-capstone-project/blob/master/foward_engineering/script_FowardEngineering.sql)
 - [Mock data insert script](https://github.com/marianamannes/db-capstone-project/blob/master/insert/insert_MockData.sql)
