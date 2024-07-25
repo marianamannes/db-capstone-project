@@ -4,13 +4,15 @@ A database management project aimed at setting up and optimizing the database en
 
 ## Project Overview
 
-- **Module One**: Setting up a repository, MySQL instance server and an ER diagram data model.
-- **Module Two**: Creating virtual tables with JOINs, optimized queries, and managing bookings using SQL.
-- **Module Three**: Creating interactive dashboards in Tableau and developing a Python-based database client.
+Key components and steps involved in this project include:
+
+1. MySQL instance configuration and ER diagram design
+2. SQL query development
+3. Data visualization with tableau and python-based database client
 
 ## Project Modules
 
-<h3> 1. Database Environment Setup </h3>
+<h3> 1. MySQL instance configuration and ER diagram design </h3>
 
 - Set up a MySQL instance server using MySQL Workbench.
 - Create and implement an ER diagram data model, conforming to the three fundamental forms.
@@ -21,9 +23,9 @@ A database management project aimed at setting up and optimizing the database en
 - [Foward engineering SQL script](https://github.com/marianamannes/db-capstone-project/blob/master/foward_engineering/script_FowardEngineering.sql)
 - [Mock data insert script](https://github.com/marianamannes/db-capstone-project/blob/master/insert/insert_MockData.sql)
 
-<h3> 2. Sales Reports and Table Booking System </h3>
-
-- Some simple tasks to test the database:
+<h3> 2. SQL query development </h3>
+<details>
+<summary> Queries to sales report </summary>
 
   <details>
   <summary>Create a view with all orders with a quantity greater than 2</summary>
@@ -125,8 +127,10 @@ A database management project aimed at setting up and optimizing the database en
   
   </details>
 
+</details>
 
-- Booking System
+<details>
+<summary> Booking System </summary>
    <details>
     <summary>Create a stored procedure to check whether a table in the restaurant is already booked</summary>
       
@@ -246,6 +250,7 @@ A database management project aimed at setting up and optimizing the database en
     ```
   
   </details>
+</details>
   
 <h3> 3. Data Visualization and Database Client </h3>
 
