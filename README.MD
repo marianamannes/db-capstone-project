@@ -99,16 +99,16 @@ Key components and steps involved in this project include:
     <details>
     <summary>Create a prepared statement to return the order id, the quantity and the order cost to some customer from the Orders table</summary>
 
-      ```sql
-      PREPARE GetOrderDetail FROM 'SELECT id, 
-                                          quantity, 
-                                          total_cost
-                                          FROM orders
-                                          WHERE customer_id = ?';
-      
-      SET @id = 1;
-      EXECUTE GetOrderDetail USING @id;
-      ```
+    ```sql
+    PREPARE GetOrderDetail FROM 'SELECT id, 
+                                        quantity, 
+                                        total_cost
+                                        FROM orders
+                                        WHERE customer_id = ?';
+    
+    SET @id = 1;
+    EXECUTE GetOrderDetail USING @id;
+    ```
 
     </details>
 
