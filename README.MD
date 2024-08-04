@@ -233,7 +233,7 @@ Key components and steps involved in this project include:
     </details>
 
     <details>
-    <summary><b>Create a new procedure called UpdateBooking that they can use to update existing bookings in the booking table</b></summary>
+    <summary>Create a new procedure called UpdateBooking that they can use to update existing bookings in the booking table</summary>
 
     ```sql
     DELIMITER //
